@@ -20,11 +20,11 @@ class SearchViewModel {
 
     // MARK: - Output
     var didReceiveUsers: (() -> Void)?
-    var didReceiveError: ((GUError) -> Void)?
+    var didReceiveError: ((BaseError) -> Void)?
 
     // MARK: - Input
     func didLoadUsers(query: String) {
-        var result: Result<UserModel, GUError>?
+        var result: Result<UserModel, BaseError>?
 
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()

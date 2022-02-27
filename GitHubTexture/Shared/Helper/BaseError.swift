@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GUError: String, Error {
+enum BaseError: String, Error {
     case errorNetwork = "Found error from network. Please try again later."
     case invalidResponse = "Invalid data receiced from the server. Please try again later."
     case invalidData = "The data received from the server was invalid. Please try again later."
