@@ -19,8 +19,10 @@
 		CFFD987E27CB4075009FC18D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD987D27CB4075009FC18D /* UserModel.swift */; };
 		CFFD988027CB428B009FC18D /* UsersNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD987F27CB428B009FC18D /* UsersNetworkProvider.swift */; };
 		CFFD988227CB432C009FC18D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD988127CB432C009FC18D /* Constants.swift */; };
-		CFFD988527CB4367009FC18D /* GUError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD988427CB4367009FC18D /* GUError.swift */; };
+		CFFD988527CB4367009FC18D /* BaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD988427CB4367009FC18D /* BaseError.swift */; };
 		CFFD988727CB449C009FC18D /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD988627CB449C009FC18D /* SearchViewModel.swift */; };
+		CFFD988927CB4C66009FC18D /* UsersCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD988827CB4C66009FC18D /* UsersCollectionNode.swift */; };
+		CFFD988B27CB4CBD009FC18D /* UserCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD988A27CB4CBD009FC18D /* UserCellNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,8 +42,10 @@
 		CFFD987D27CB4075009FC18D /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		CFFD987F27CB428B009FC18D /* UsersNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersNetworkProvider.swift; sourceTree = "<group>"; };
 		CFFD988127CB432C009FC18D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		CFFD988427CB4367009FC18D /* GUError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GUError.swift; sourceTree = "<group>"; };
+		CFFD988427CB4367009FC18D /* BaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseError.swift; sourceTree = "<group>"; };
 		CFFD988627CB449C009FC18D /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		CFFD988827CB4C66009FC18D /* UsersCollectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCollectionNode.swift; sourceTree = "<group>"; };
+		CFFD988A27CB4CBD009FC18D /* UserCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,8 @@
 			children = (
 				CFFD987827CB3147009FC18D /* SearchViewController.swift */,
 				CFFD988627CB449C009FC18D /* SearchViewModel.swift */,
+				CFFD988827CB4C66009FC18D /* UsersCollectionNode.swift */,
+				CFFD988A27CB4CBD009FC18D /* UserCellNode.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -187,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				CFFD988127CB432C009FC18D /* Constants.swift */,
-				CFFD988427CB4367009FC18D /* GUError.swift */,
+				CFFD988427CB4367009FC18D /* BaseError.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -307,14 +313,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFFD988727CB449C009FC18D /* SearchViewModel.swift in Sources */,
-				CFFD988527CB4367009FC18D /* GUError.swift in Sources */,
+				CFFD988527CB4367009FC18D /* BaseError.swift in Sources */,
 				CFFD987927CB3147009FC18D /* SearchViewController.swift in Sources */,
 				CFFD987E27CB4075009FC18D /* UserModel.swift in Sources */,
 				CF95EDC327CA662B00D9183E /* LeadingViewController.swift in Sources */,
 				CF77963927CB1DE500A2F081 /* TextFieldNode.swift in Sources */,
 				CFFD988027CB428B009FC18D /* UsersNetworkProvider.swift in Sources */,
 				CF95EDBF27CA662B00D9183E /* AppDelegate.swift in Sources */,
+				CFFD988927CB4C66009FC18D /* UsersCollectionNode.swift in Sources */,
 				CF95EDC127CA662B00D9183E /* SceneDelegate.swift in Sources */,
+				CFFD988B27CB4CBD009FC18D /* UserCellNode.swift in Sources */,
 				CFFD987627CB2721009FC18D /* ViewController+Ext.swift in Sources */,
 				CFFD988227CB432C009FC18D /* Constants.swift in Sources */,
 			);

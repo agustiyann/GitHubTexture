@@ -10,14 +10,127 @@ import UIKit
 
 class SearchViewController: ASDKViewController<ASDisplayNode> {
 
+    private let collectionViewFlowLayout: UICollectionViewFlowLayout = {
+        let collectionViewFlowLayout = UICollectionViewFlowLayout()
+        collectionViewFlowLayout.minimumLineSpacing = 8
+        collectionViewFlowLayout.scrollDirection  = .vertical
+        return collectionViewFlowLayout
+    }()
+
+    private let collectionNode: ASCollectionNode
+    private let itemsPerRow: CGFloat = 3
+    private let sectionInsets = UIEdgeInsets(
+      top: 8.0,
+      left: 20.0,
+      bottom: 8.0,
+      right: 20.0)
+
+    var username: String = ""
+    var viewModel: SearchViewModel = SearchViewModel(useCase: UsersUseCase())
+
     override init() {
+        self.collectionNode = ASCollectionNode(
+            frame: .zero,
+            collectionViewLayout: self.collectionViewFlowLayout
+        )
         super.init(node: ASDisplayNode())
-        self.node.backgroundColor = .systemBackground
         title = "Search User"
+        self.collectionNode.delegate = self
+        self.collectionNode.dataSource = self
+        self.collectionNode.style.width = .init(unit: .fraction, value: 1)
+        self.collectionNode.style.height = .init(unit: .fraction, value: 1)
+        self.node.backgroundColor = .systemBackground
+        self.node.automaticallyManagesSubnodes = true
+        self.node.layoutSpecBlock = { [weak self] _, _ in
+            guard let self = self else { return .init() }
+            return ASInsetLayoutSpec(insets: .zero, child: self.collectionNode)
+        }
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bindViewModel()
+        viewModel.didLoadUsers(query: "agus")
+    }
+
+    private func bindViewModel() {
+        viewModel.didReceiveUsers = { [weak self] in
+            self?.collectionNode.reloadData()
+//            self?.stopIndicator()
+//            self?.emptyLabel.isHidden = true
+            if (self?.viewModel.users.isEmpty)! {
+                print("empty")
+//                let message = "Oops, user not found. Try another keywords!"
+//                self?.configureEmptyLabel(with: message)
+//                self?.emptyLabel.isHidden = false
+            }
+        }
+
+        viewModel.didReceiveError = { error in
+            print(error)
+            self.collectionNode.reloadData()
+//            self.stopIndicator()
+//            self.configureEmptyLabel(with: error.rawValue)
+//            self.emptyLabel.isHidden = false
+        }
+    }
+
+}
+
+extension SearchViewController: ASCollectionDataSource, ASCollectionDelegate {
+    public func collectionNode(
+        _ collectionNode: ASCollectionNode,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        viewModel.users.count
+    }
+
+    public func collectionNode(
+        _ collectionNode: ASCollectionNode,
+        nodeBlockForItemAt indexPath: IndexPath
+    ) -> ASCellNodeBlock {
+        let userData = viewModel.users[indexPath.row]
+        return { UserCellNode(user: userData) }
+    }
+
+    public func collectionNode(
+        _ collectionNode: ASCollectionNode,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        print(viewModel.users[indexPath.row])
+    }
+}
+
+extension SearchViewController: UICollectionViewDelegateFlowLayout {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+
+        return CGSize(width: widthPerItem, height: widthPerItem + 20)
+    }
+
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        return sectionInsets
+    }
+
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        return sectionInsets.left
+    }
 }
