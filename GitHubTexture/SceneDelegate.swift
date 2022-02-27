@@ -16,12 +16,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.windowScene = windowScene
+
         let nav = UINavigationController(rootViewController: LeadingViewController())
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
+        nav.navigationBar.standardAppearance = appearance
         nav.navigationBar.scrollEdgeAppearance = nav.navigationBar.standardAppearance
-        nav.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        nav.navigationBar.shadowImage = UIImage()
         nav.navigationBar.isTranslucent = true
-        nav.view.backgroundColor = .clear
 
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
