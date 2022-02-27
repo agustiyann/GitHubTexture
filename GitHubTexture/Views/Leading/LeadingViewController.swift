@@ -117,7 +117,7 @@ class LeadingViewController: ASDKViewController<ASDisplayNode> {
 
     @objc private func searchButtonPressed() {
         print("Agus")
-//        navigationController?.pushViewController(SecondViewController(), animated: true)
+        navigationController?.pushViewController(SearchViewController(), animated: false)
     }
 
 }

@@ -15,6 +15,7 @@
 		CF95EDC827CA662C00D9183E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF95EDC727CA662C00D9183E /* Assets.xcassets */; };
 		CF95EDCB27CA662C00D9183E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF95EDC927CA662C00D9183E /* LaunchScreen.storyboard */; };
 		CFFD987627CB2721009FC18D /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD987527CB2721009FC18D /* ViewController+Ext.swift */; };
+		CFFD987927CB3147009FC18D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD987827CB3147009FC18D /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		CF95EDCA27CA662C00D9183E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF95EDCC27CA662C00D9183E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFFD987527CB2721009FC18D /* ViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Ext.swift"; sourceTree = "<group>"; };
+		CFFD987827CB3147009FC18D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +132,17 @@
 			isa = PBXGroup;
 			children = (
 				CF77963527CB1C3600A2F081 /* Leading */,
+				CFFD987727CB3127009FC18D /* Search */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CFFD987727CB3127009FC18D /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				CFFD987827CB3147009FC18D /* SearchViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFFD987927CB3147009FC18D /* SearchViewController.swift in Sources */,
 				CF95EDC327CA662B00D9183E /* LeadingViewController.swift in Sources */,
 				CF77963927CB1DE500A2F081 /* TextFieldNode.swift in Sources */,
 				CF95EDBF27CA662B00D9183E /* AppDelegate.swift in Sources */,
