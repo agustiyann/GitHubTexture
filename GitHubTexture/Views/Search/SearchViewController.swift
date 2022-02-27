@@ -12,7 +12,7 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
 
     override init() {
         super.init(node: ASDisplayNode())
-        self.node.backgroundColor = .white
+        self.node.backgroundColor = .systemBackground
         title = "Search User"
     }
 

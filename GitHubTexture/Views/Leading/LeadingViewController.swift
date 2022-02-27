@@ -55,7 +55,7 @@ class LeadingViewController: ASDKViewController<ASDisplayNode> {
             self,
             action: #selector(searchButtonPressed),
             forControlEvents: .touchUpInside)
-        self.node.backgroundColor = .white
+        self.node.backgroundColor = .systemBackground
         self.node.automaticallyManagesSubnodes = true
         self.node.layoutSpecBlock = { [weak self] _, _ in
             guard let self = self else { return .init() }
