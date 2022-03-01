@@ -17,6 +17,10 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
         return collectionViewFlowLayout
     }()
 
+    let searchController = UISearchController()
+    var indicator = UIActivityIndicatorView()
+    var emptyLabel = UILabel()
+
     private let collectionNode: ASCollectionNode
     private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(
@@ -26,7 +30,7 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
       right: 20.0)
 
     var username: String = ""
-    var viewModel: SearchViewModel = SearchViewModel(useCase: UsersUseCase())
+    private let viewModel: SearchViewModel = SearchViewModel(useCase: UsersUseCase())
 
     override init() {
         self.collectionNode = ASCollectionNode(
@@ -35,16 +39,19 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
         )
         super.init(node: ASDisplayNode())
         title = "Search User"
+        self.node.backgroundColor = .systemBackground
         self.collectionNode.delegate = self
         self.collectionNode.dataSource = self
         self.collectionNode.style.width = .init(unit: .fraction, value: 1)
         self.collectionNode.style.height = .init(unit: .fraction, value: 1)
-        self.node.backgroundColor = .systemBackground
         self.node.automaticallyManagesSubnodes = true
         self.node.layoutSpecBlock = { [weak self] _, _ in
             guard let self = self else { return .init() }
             return ASInsetLayoutSpec(insets: .zero, child: self.collectionNode)
         }
+        setupView()
+        bindViewModel()
+        viewModel.didLoadUsers(query: "agus")
     }
 
     required init?(coder: NSCoder) {
@@ -53,30 +60,73 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindViewModel()
-        viewModel.didLoadUsers(query: "agus")
+        
+    }
+
+    private func setupView() {
+        configureActivityIndicator()
+        configureSearchController()
+        emptyLabel.isHidden = true
     }
 
     private func bindViewModel() {
         viewModel.didReceiveUsers = { [weak self] in
             self?.collectionNode.reloadData()
-//            self?.stopIndicator()
-//            self?.emptyLabel.isHidden = true
+            self?.stopIndicator()
+            self?.emptyLabel.isHidden = true
             if (self?.viewModel.users.isEmpty)! {
-                print("empty")
-//                let message = "Oops, user not found. Try another keywords!"
-//                self?.configureEmptyLabel(with: message)
-//                self?.emptyLabel.isHidden = false
+                let message = "Oops, user not found. Try another keywords!"
+                self?.configureEmptyLabel(with: message)
+                self?.emptyLabel.isHidden = false
             }
         }
 
         viewModel.didReceiveError = { error in
             print(error)
             self.collectionNode.reloadData()
-//            self.stopIndicator()
-//            self.configureEmptyLabel(with: error.rawValue)
-//            self.emptyLabel.isHidden = false
+            self.stopIndicator()
+            self.configureEmptyLabel(with: error.rawValue)
+            self.emptyLabel.isHidden = false
         }
+    }
+
+    private func configureSearchController() {
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search for a username"
+        searchController.searchBar.keyboardType = .asciiCapable
+        searchController.searchBar.autocapitalizationType = .none
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+
+    private func configureActivityIndicator() {
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.style = .large
+        indicator.color = .systemGreen
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+    }
+
+    private func startIndicator() {
+        indicator.startAnimating()
+        indicator.backgroundColor = .clear
+    }
+
+    private func stopIndicator() {
+        indicator.stopAnimating()
+        indicator.hidesWhenStopped = true
+    }
+
+    private func configureEmptyLabel(with message: String) {
+        let screenSize = UIScreen.main.bounds
+        emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: screenSize.width - 20, height: 300))
+        emptyLabel.center = self.view.center
+        emptyLabel.textAlignment = .center
+        emptyLabel.text = message
+        emptyLabel.textColor = .secondaryLabel
+        emptyLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        emptyLabel.numberOfLines = 0
+        self.view.addSubview(emptyLabel)
     }
 
 }
@@ -132,5 +182,29 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
         return sectionInsets.left
+    }
+}
+
+// MARK: - UISearch Delegate
+
+extension SearchViewController:  UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchController.searchBar.text {
+            print(text)
+            startIndicator()
+            self.emptyLabel.isHidden = true
+            viewModel.didLoadUsers(query: text)
+        }
+    }
+
+    func searchBar(
+        _ searchBar: UISearchBar,
+        shouldChangeTextIn range: NSRange,
+        replacementText text: String
+    ) -> Bool {
+        if text == " " {
+            return false
+        }
+        return true
     }
 }

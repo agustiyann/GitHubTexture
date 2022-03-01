@@ -29,7 +29,10 @@ class UserCellNode: ASCellNode {
 
     public init(user: User) {
         self.user = user
-        let usernameAttr = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 14.0)!]
+        let usernameAttr = [
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 14.0)!,
+            NSAttributedString.Key.foregroundColor: UIColor.label,
+        ]
         self.nameNode.attributedText = NSAttributedString(string: self.user.username, attributes: usernameAttr)
         self.nameNode.maximumNumberOfLines = 1
         self.nameNode.truncationMode = .byTruncatingTail
