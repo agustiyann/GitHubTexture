@@ -46,6 +46,7 @@ class LeadingViewController: ASDKViewController<ASDisplayNode> {
     }()
 
     private var searchNode: TextFieldNode!
+    private var username: String = ""
 
     override init() {
         super.init(node: ASDisplayNode())
@@ -116,16 +117,44 @@ class LeadingViewController: ASDKViewController<ASDisplayNode> {
     }
 
     @objc private func searchButtonPressed() {
-        print("Agus")
-        navigationController?.pushViewController(SearchViewController(), animated: false)
+        if !self.username.isEmpty {
+            let searchVC = SearchViewController()
+            searchVC.username = self.username
+            navigationController?.pushViewController(searchVC, animated: false)
+        } else {
+            showEmptyAlert()
+        }
     }
 
 }
 
+// MARK: - Text field delegate
+
 extension LeadingViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let username = textField.text, !username.isEmpty {
+            let searchVC = SearchViewController()
+            searchVC.username = username
+            navigationController?.pushViewController(searchVC, animated: false)
+        } else {
+            showEmptyAlert()
+        }
+        return true
+    }
+
+    func showEmptyAlert() {
+        let alert = UIAlertController(
+            title: "Empty Username",
+            message: "Please enter a username. We need to know who to look for 👀.",
+            preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        print(text)
+        guard let username = textField.text else { return }
+        self.username = username
     }
 
     func textField(
@@ -139,4 +168,3 @@ extension LeadingViewController: UITextFieldDelegate {
         return true
     }
 }
-

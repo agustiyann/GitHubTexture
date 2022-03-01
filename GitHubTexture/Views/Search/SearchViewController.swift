@@ -10,6 +10,7 @@ import UIKit
 
 class SearchViewController: ASDKViewController<ASDisplayNode> {
 
+    // Collection flow layout
     private let collectionViewFlowLayout: UICollectionViewFlowLayout = {
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.minimumLineSpacing = 8
@@ -17,10 +18,12 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
         return collectionViewFlowLayout
     }()
 
+    // Search controller
     let searchController = UISearchController()
     var indicator = UIActivityIndicatorView()
     var emptyLabel = UILabel()
 
+    // Collection node
     private let collectionNode: ASCollectionNode
     private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(
@@ -30,9 +33,10 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
       right: 20.0)
 
     var username: String = ""
-    private let viewModel: SearchViewModel = SearchViewModel(useCase: UsersUseCase())
+    private var viewModel: SearchViewModel
 
     override init() {
+        self.viewModel = SearchViewModel(useCase: UsersUseCase())
         self.collectionNode = ASCollectionNode(
             frame: .zero,
             collectionViewLayout: self.collectionViewFlowLayout
@@ -49,9 +53,6 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
             guard let self = self else { return .init() }
             return ASInsetLayoutSpec(insets: .zero, child: self.collectionNode)
         }
-        setupView()
-        bindViewModel()
-        viewModel.didLoadUsers(query: "agus")
     }
 
     required init?(coder: NSCoder) {
@@ -60,7 +61,9 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupView()
+        bindViewModel()
+        viewModel.didLoadUsers(query: username)
     }
 
     private func setupView() {
@@ -70,6 +73,7 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
     }
 
     private func bindViewModel() {
+        startIndicator()
         viewModel.didReceiveUsers = { [weak self] in
             self?.collectionNode.reloadData()
             self?.stopIndicator()
@@ -131,6 +135,8 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
 
 }
 
+// MARK: - ASCollection data source & delegate
+
 extension SearchViewController: ASCollectionDataSource, ASCollectionDelegate {
     public func collectionNode(
         _ collectionNode: ASCollectionNode,
@@ -154,6 +160,8 @@ extension SearchViewController: ASCollectionDataSource, ASCollectionDelegate {
         print(viewModel.users[indexPath.row])
     }
 }
+
+// MARK: - Collection view delegate flow layout
 
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(
