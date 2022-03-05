@@ -19,7 +19,7 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
     }()
 
     // Search controller
-    let searchController = UISearchController()
+    let searchController = UISearchController(searchResultsController: SearchResultViewController())
     var indicator = UIActivityIndicatorView()
     var emptyLabel = UILabel()
 
@@ -201,6 +201,7 @@ extension SearchViewController:  UISearchBarDelegate {
             print(text)
             startIndicator()
             self.emptyLabel.isHidden = true
+            searchController.showsSearchResultsController = false
             viewModel.didLoadUsers(query: text)
         }
     }
@@ -218,6 +219,7 @@ extension SearchViewController:  UISearchBarDelegate {
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         print("begikn")
+        searchController.showsSearchResultsController = true
         return true
     }
 
