@@ -7,5 +7,6 @@ target 'GitHubTexture' do
 
   # Pods for GitHubTexture
   pod "Texture"
+  pod 'IQKeyboardManager'
 
 end
