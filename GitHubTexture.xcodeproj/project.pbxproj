@@ -15,6 +15,7 @@
 		CF95EDC827CA662C00D9183E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF95EDC727CA662C00D9183E /* Assets.xcassets */; };
 		CF95EDCB27CA662C00D9183E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF95EDC927CA662C00D9183E /* LaunchScreen.storyboard */; };
 		CFE6E2B727D397BD0049A5E2 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6E2B627D397BD0049A5E2 /* SearchResultViewController.swift */; };
+		CFE6E2BA27D39F950049A5E2 /* DetailUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6E2B927D39F950049A5E2 /* DetailUserViewController.swift */; };
 		CFFD987627CB2721009FC18D /* ViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD987527CB2721009FC18D /* ViewController+Ext.swift */; };
 		CFFD987927CB3147009FC18D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD987827CB3147009FC18D /* SearchViewController.swift */; };
 		CFFD987E27CB4075009FC18D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFD987D27CB4075009FC18D /* UserModel.swift */; };
@@ -39,6 +40,7 @@
 		CF95EDCA27CA662C00D9183E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF95EDCC27CA662C00D9183E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFE6E2B627D397BD0049A5E2 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		CFE6E2B927D39F950049A5E2 /* DetailUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserViewController.swift; sourceTree = "<group>"; };
 		CFFD987527CB2721009FC18D /* ViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Ext.swift"; sourceTree = "<group>"; };
 		CFFD987827CB3147009FC18D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CFFD987D27CB4075009FC18D /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		CFE6E2B827D39EE80049A5E2 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				CFE6E2B927D39F950049A5E2 /* DetailUserViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFFD988727CB449C009FC18D /* SearchViewModel.swift in Sources */,
+				CFE6E2BA27D39F950049A5E2 /* DetailUserViewController.swift in Sources */,
 				CFFD988527CB4367009FC18D /* BaseError.swift in Sources */,
 				CFFD987927CB3147009FC18D /* SearchViewController.swift in Sources */,
 				CFFD987E27CB4075009FC18D /* UserModel.swift in Sources */,

@@ -157,7 +157,9 @@ extension SearchViewController: ASCollectionDataSource, ASCollectionDelegate {
         _ collectionNode: ASCollectionNode,
         didSelectItemAt indexPath: IndexPath
     ) {
-        print(viewModel.users[indexPath.row])
+        let detailVC = DetailUserViewController()
+        detailVC.username = viewModel.users[indexPath.row].username
+        navigationController?.pushViewController(detailVC, animated: false)
     }
 }
 
