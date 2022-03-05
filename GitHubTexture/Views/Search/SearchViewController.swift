@@ -100,7 +100,7 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
         searchController.searchBar.keyboardType = .asciiCapable
         searchController.searchBar.autocapitalizationType = .none
         navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
 
     private func configureActivityIndicator() {
@@ -214,5 +214,14 @@ extension SearchViewController:  UISearchBarDelegate {
             return false
         }
         return true
+    }
+
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        print("begikn")
+        return true
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("cancel")
     }
 }
