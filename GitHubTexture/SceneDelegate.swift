@@ -20,11 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let nav = UINavigationController(rootViewController: LeadingViewController())
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()
-        nav.navigationBar.prefersLargeTitles = true
-        nav.navigationBar.standardAppearance = appearance
         nav.navigationBar.tintColor = .systemGreen
-        nav.navigationBar.scrollEdgeAppearance = nav.navigationBar.standardAppearance
-        nav.navigationBar.isTranslucent = true
 
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
