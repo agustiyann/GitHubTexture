@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		271C5AADE14A80E59DCFD556 /* Pods_GitHubTexture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710D65632249D53BBCF109ED /* Pods_GitHubTexture.framework */; };
+		CF2D749727DA34EE0062FCE2 /* DetailUserNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2D749627DA34EE0062FCE2 /* DetailUserNetworkProvider.swift */; };
+		CF2D749927DA35930062FCE2 /* DetailUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2D749827DA35930062FCE2 /* DetailUserModel.swift */; };
 		CF77963927CB1DE500A2F081 /* TextFieldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF77963827CB1DE500A2F081 /* TextFieldNode.swift */; };
 		CF95EDBF27CA662B00D9183E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95EDBE27CA662B00D9183E /* AppDelegate.swift */; };
 		CF95EDC127CA662B00D9183E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95EDC027CA662B00D9183E /* SceneDelegate.swift */; };
@@ -31,6 +33,8 @@
 		19D5AEE5CFF592817DD374BD /* Pods-GitHubTexture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubTexture.debug.xcconfig"; path = "Target Support Files/Pods-GitHubTexture/Pods-GitHubTexture.debug.xcconfig"; sourceTree = "<group>"; };
 		698DD103078294B45DABDA91 /* Pods-GitHubTexture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubTexture.release.xcconfig"; path = "Target Support Files/Pods-GitHubTexture/Pods-GitHubTexture.release.xcconfig"; sourceTree = "<group>"; };
 		710D65632249D53BBCF109ED /* Pods_GitHubTexture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubTexture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF2D749627DA34EE0062FCE2 /* DetailUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserNetworkProvider.swift; sourceTree = "<group>"; };
+		CF2D749827DA35930062FCE2 /* DetailUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserModel.swift; sourceTree = "<group>"; };
 		CF77963827CB1DE500A2F081 /* TextFieldNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldNode.swift; sourceTree = "<group>"; };
 		CF95EDBB27CA662B00D9183E /* GitHubTexture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubTexture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF95EDBE27CA662B00D9183E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 			children = (
 				CFFD987C27CB405D009FC18D /* Model */,
 				CFFD987F27CB428B009FC18D /* UsersNetworkProvider.swift */,
+				CF2D749627DA34EE0062FCE2 /* DetailUserNetworkProvider.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				CFFD987D27CB4075009FC18D /* UserModel.swift */,
+				CF2D749827DA35930062FCE2 /* DetailUserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +340,7 @@
 				CF95EDC327CA662B00D9183E /* LeadingViewController.swift in Sources */,
 				CF77963927CB1DE500A2F081 /* TextFieldNode.swift in Sources */,
 				CFFD988027CB428B009FC18D /* UsersNetworkProvider.swift in Sources */,
+				CF2D749727DA34EE0062FCE2 /* DetailUserNetworkProvider.swift in Sources */,
 				CF95EDBF27CA662B00D9183E /* AppDelegate.swift in Sources */,
 				CFE6E2B727D397BD0049A5E2 /* SearchResultViewController.swift in Sources */,
 				CFFD988927CB4C66009FC18D /* UsersCollectionNode.swift in Sources */,
@@ -341,6 +348,7 @@
 				CFFD988B27CB4CBD009FC18D /* UserCellNode.swift in Sources */,
 				CFFD987627CB2721009FC18D /* ViewController+Ext.swift in Sources */,
 				CFFD988227CB432C009FC18D /* Constants.swift in Sources */,
+				CF2D749927DA35930062FCE2 /* DetailUserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
