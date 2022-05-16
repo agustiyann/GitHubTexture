@@ -6,6 +6,7 @@
 //
 
 import AsyncDisplayKit
+import SafariServices
 
 final public class RepositoryNode: ASDisplayNode {
 
@@ -61,14 +62,63 @@ final public class RepositoryNode: ASDisplayNode {
         ]
         repoCountTextNode.attributedText = .init(string: "\(repositories)", attributes: multipleAttributes)
         gistsCountNode.attributedText = .init(string: "\(gist)", attributes: multipleAttributes)
+        self.buttonNode.addTarget(self, action: #selector(presentSafariVC), forControlEvents: .touchUpInside)
     }
 
     public override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let repoStack = ASStackLayoutSpec(direction: .vertical, spacing: 8, justifyContent: .center, alignItems: .center, children: [repoTextNode, repoCountTextNode])
-        let gistStack = ASStackLayoutSpec(direction: .vertical, spacing: 8, justifyContent: .center, alignItems: .center, children: [gistTextNode, gistsCountNode])
-        let textCountStack = ASStackLayoutSpec(direction: .horizontal, spacing: 20, justifyContent: .center, alignItems: .center, children: [repoStack, gistStack])
-        let finalStack = ASStackLayoutSpec(direction: .vertical, spacing: 16, justifyContent: .center, alignItems: .center, children: [textCountStack, self.buttonNode])
+        let repoStack = ASStackLayoutSpec(
+            direction: .vertical,
+            spacing: 8,
+            justifyContent: .center,
+            alignItems: .center,
+            children: [repoTextNode, repoCountTextNode])
+
+        let gistStack = ASStackLayoutSpec(
+            direction: .vertical,
+            spacing: 8,
+            justifyContent: .center,
+            alignItems: .center,
+            children: [gistTextNode, gistsCountNode])
+
+        let textCountStack = ASStackLayoutSpec(
+            direction: .horizontal,
+            spacing: 20,
+            justifyContent: .center,
+            alignItems: .center,
+            children: [repoStack, gistStack])
+
+        let finalStack = ASStackLayoutSpec(
+            direction: .vertical,
+            spacing: 16,
+            justifyContent: .center,
+            alignItems: .center,
+            children: [textCountStack, self.buttonNode])
 
         return ASInsetLayoutSpec(insets: .init(top: 16, left: 16, bottom: 16, right: 16), child: finalStack)
     }
+
+    @objc func presentSafariVC() {
+        let currentVC = self.getCurrentViewController()
+        let safariVC = SFSafariViewController(url: URL(string: url)!)
+        safariVC.preferredControlTintColor = .systemGreen
+        safariVC.modalPresentationStyle = .pageSheet
+        currentVC?.present(safariVC, animated: true, completion: nil)
+    }
+
+    func getCurrentViewController() -> UIViewController? {
+        let keyWindow = UIApplication.shared.connectedScenes
+                .filter({$0.activationState == .foregroundActive})
+                .compactMap({$0 as? UIWindowScene})
+                .first?.windows
+                .filter({$0.isKeyWindow}).first
+        if let rootController = keyWindow?.rootViewController {
+            var currentController: UIViewController! = rootController
+            while( currentController.presentedViewController != nil ) {
+                currentController = currentController.presentedViewController
+            }
+            return currentController
+        }
+        return nil
+    }
+
 }
