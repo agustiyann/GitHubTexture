@@ -10,6 +10,9 @@
 		271C5AADE14A80E59DCFD556 /* Pods_GitHubTexture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710D65632249D53BBCF109ED /* Pods_GitHubTexture.framework */; };
 		CF2D749727DA34EE0062FCE2 /* DetailUserNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2D749627DA34EE0062FCE2 /* DetailUserNetworkProvider.swift */; };
 		CF2D749927DA35930062FCE2 /* DetailUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2D749827DA35930062FCE2 /* DetailUserModel.swift */; };
+		CF2D749B27DA36720062FCE2 /* DetailUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2D749A27DA36720062FCE2 /* DetailUserViewModel.swift */; };
+		CF4B575427DE33820031F5FC /* RepositoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4B575327DE33820031F5FC /* RepositoryNode.swift */; };
+		CF70F97E27DE46DB00069A20 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70F97D27DE46DB00069A20 /* String+Ext.swift */; };
 		CF77963927CB1DE500A2F081 /* TextFieldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF77963827CB1DE500A2F081 /* TextFieldNode.swift */; };
 		CF95EDBF27CA662B00D9183E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95EDBE27CA662B00D9183E /* AppDelegate.swift */; };
 		CF95EDC127CA662B00D9183E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95EDC027CA662B00D9183E /* SceneDelegate.swift */; };
@@ -35,6 +38,9 @@
 		710D65632249D53BBCF109ED /* Pods_GitHubTexture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubTexture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF2D749627DA34EE0062FCE2 /* DetailUserNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserNetworkProvider.swift; sourceTree = "<group>"; };
 		CF2D749827DA35930062FCE2 /* DetailUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserModel.swift; sourceTree = "<group>"; };
+		CF2D749A27DA36720062FCE2 /* DetailUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserViewModel.swift; sourceTree = "<group>"; };
+		CF4B575327DE33820031F5FC /* RepositoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryNode.swift; sourceTree = "<group>"; };
+		CF70F97D27DE46DB00069A20 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		CF77963827CB1DE500A2F081 /* TextFieldNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldNode.swift; sourceTree = "<group>"; };
 		CF95EDBB27CA662B00D9183E /* GitHubTexture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubTexture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF95EDBE27CA662B00D9183E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				CFE6E2B927D39F950049A5E2 /* DetailUserViewController.swift */,
+				CF2D749A27DA36720062FCE2 /* DetailUserViewModel.swift */,
+				CF4B575327DE33820031F5FC /* RepositoryNode.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -214,6 +222,7 @@
 			children = (
 				CFFD988127CB432C009FC18D /* Constants.swift */,
 				CFFD988427CB4367009FC18D /* BaseError.swift */,
+				CF70F97D27DE46DB00069A20 /* String+Ext.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -335,7 +344,9 @@
 				CFFD988727CB449C009FC18D /* SearchViewModel.swift in Sources */,
 				CFE6E2BA27D39F950049A5E2 /* DetailUserViewController.swift in Sources */,
 				CFFD988527CB4367009FC18D /* BaseError.swift in Sources */,
+				CF4B575427DE33820031F5FC /* RepositoryNode.swift in Sources */,
 				CFFD987927CB3147009FC18D /* SearchViewController.swift in Sources */,
+				CF2D749B27DA36720062FCE2 /* DetailUserViewModel.swift in Sources */,
 				CFFD987E27CB4075009FC18D /* UserModel.swift in Sources */,
 				CF95EDC327CA662B00D9183E /* LeadingViewController.swift in Sources */,
 				CF77963927CB1DE500A2F081 /* TextFieldNode.swift in Sources */,
@@ -348,6 +359,7 @@
 				CFFD988B27CB4CBD009FC18D /* UserCellNode.swift in Sources */,
 				CFFD987627CB2721009FC18D /* ViewController+Ext.swift in Sources */,
 				CFFD988227CB432C009FC18D /* Constants.swift in Sources */,
+				CF70F97E27DE46DB00069A20 /* String+Ext.swift in Sources */,
 				CF2D749927DA35930062FCE2 /* DetailUserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
