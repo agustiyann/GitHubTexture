@@ -33,6 +33,7 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
       right: 20.0)
 
     var username: String = ""
+    var currentPage = 1
     private var viewModel: SearchViewModel
 
     override init() {
@@ -63,7 +64,7 @@ class SearchViewController: ASDKViewController<ASDisplayNode> {
         super.viewDidLoad()
         setupView()
         bindViewModel()
-        viewModel.didLoadUsers(query: username)
+        viewModel.didLoadUsers(query: username, page: currentPage)
     }
 
     private func setupView() {
@@ -161,6 +162,16 @@ extension SearchViewController: ASCollectionDataSource, ASCollectionDelegate {
         detailVC.username = viewModel.users[indexPath.row].username
         navigationController?.pushViewController(detailVC, animated: false)
     }
+
+    func collectionNode(_ collectionNode: ASCollectionNode, willDisplayItemWith node: ASCellNode) {
+        if node.indexPath?.row == viewModel.users.count - 1 {
+            startIndicator()
+            currentPage += 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.viewModel.didLoadUsers(query: self.username, page: self.currentPage)
+            }
+        }
+    }
 }
 
 // MARK: - Collection view delegate flow layout
@@ -193,6 +204,7 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
     ) -> CGFloat {
         return sectionInsets.left
     }
+
 }
 
 // MARK: - UISearch Delegate
@@ -204,7 +216,7 @@ extension SearchViewController:  UISearchBarDelegate {
             startIndicator()
             self.emptyLabel.isHidden = true
             searchController.showsSearchResultsController = false
-            viewModel.didLoadUsers(query: text)
+            viewModel.didLoadUsers(query: text, page: 1)
         }
     }
 
@@ -220,12 +232,10 @@ extension SearchViewController:  UISearchBarDelegate {
     }
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        print("begikn")
         searchController.showsSearchResultsController = true
         return true
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("cancel")
     }
 }

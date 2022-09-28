@@ -23,12 +23,12 @@ class SearchViewModel {
     var didReceiveError: ((BaseError) -> Void)?
 
     // MARK: - Input
-    func didLoadUsers(query: String) {
+    func didLoadUsers(query: String, page: Int) {
         var result: Result<UserModel, BaseError>?
 
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        useCase.fetchUsers(query: query) { userResult in
+        useCase.fetchUsers(query: query, page: page) { userResult in
             result = userResult
             dispatchGroup.leave()
         }
@@ -40,7 +40,7 @@ class SearchViewModel {
 
             switch result {
             case .success(let data):
-                self.users = data.items
+                self.users.append(contentsOf: data.items)
                 self.didReceiveUsers?()
             case .failure(let error):
                 self.users = []
