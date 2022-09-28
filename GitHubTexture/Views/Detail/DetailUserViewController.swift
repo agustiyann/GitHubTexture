@@ -185,43 +185,47 @@ class DetailUserViewController: ASDKViewController<ASDisplayNode> {
     private func bindViewModel() {
         viewModel.didReceiveDetail = { [weak self] in
             let detail = self?.viewModel.detail
-            self?.avatarImage.url = URL(string: detail?.avatarURL ?? "")
-
-            let nameAttributes: [NSAttributedString.Key : Any] = [
-                NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 17.0)!,
-                NSAttributedString.Key.foregroundColor: UIColor.label,
-            ]
-            self?.nameNode.attributedText = NSAttributedString(string: detail?.name ?? "", attributes: nameAttributes)
-
-            let followAttributes: [NSAttributedString.Key : Any] = [
-                NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 17.0)!,
-                NSAttributedString.Key.foregroundColor: UIColor.label,
-            ]
-            self?.followersCountNode.attributedText = NSAttributedString(string: "\(detail?.followers ?? 0)", attributes: followAttributes)
-            self?.followingsCountNode.attributedText = NSAttributedString(string: "\(detail?.following ?? 0)", attributes: followAttributes)
-
-            let locationAttributes: [NSAttributedString.Key : Any] = [
-                NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 17.0)!,
-                NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel,
-            ]
-            self?.locationNode.attributedText = NSAttributedString(string: detail?.location ?? "", attributes: locationAttributes)
-
-            let bioAttributes: [NSAttributedString.Key : Any] = [
-                NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Italic", size: 17.0)!,
-                NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel,
-            ]
-            self?.bioTextNode.attributedText = NSAttributedString(string: detail?.bio ?? "", attributes: bioAttributes)
-
-            self?.repoNode = RepositoryNode(repositories: detail?.repositories ?? 0, gist: detail?.gists ?? 0, url: detail?.url ?? "")
-
-            var date = detail?.created
-            self?.gitHubSiceTextNode.attributedText = .init(string: "GitHub since \(date?.dateFormater("MMM yyy") ?? "")", attributes: locationAttributes)
-            self?.gitHubSiceTextNode.style.alignSelf = .center
+            self?.setupUI(detail: detail)
         }
 
         viewModel.didReceiveError = { error in
             print(error)
         }
     }
-    
+
+    private func setupUI(detail: DetailUserModel?) {
+        self.avatarImage.url = URL(string: detail?.avatarURL ?? "")
+
+        let nameAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 17.0)!,
+            NSAttributedString.Key.foregroundColor: UIColor.label,
+        ]
+        self.nameNode.attributedText = NSAttributedString(string: detail?.name ?? "", attributes: nameAttributes)
+
+        let followAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 17.0)!,
+            NSAttributedString.Key.foregroundColor: UIColor.label,
+        ]
+        self.followersCountNode.attributedText = NSAttributedString(string: "\(detail?.followers ?? 0)", attributes: followAttributes)
+        self.followingsCountNode.attributedText = NSAttributedString(string: "\(detail?.following ?? 0)", attributes: followAttributes)
+
+        let locationAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue", size: 17.0)!,
+            NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel,
+        ]
+        self.locationNode.attributedText = NSAttributedString(string: detail?.location ?? "", attributes: locationAttributes)
+
+        let bioAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Italic", size: 17.0)!,
+            NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel,
+        ]
+        self.bioTextNode.attributedText = NSAttributedString(string: detail?.bio ?? "", attributes: bioAttributes)
+
+        self.repoNode = RepositoryNode(repositories: detail?.repositories ?? 0, gist: detail?.gists ?? 0, url: detail?.url ?? "")
+
+        var date = detail?.created
+        self.gitHubSiceTextNode.attributedText = .init(string: "GitHub since \(date?.dateFormater("MMM yyy") ?? "")", attributes: locationAttributes)
+        self.gitHubSiceTextNode.style.alignSelf = .center
+    }
+
 }
