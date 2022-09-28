@@ -19,7 +19,6 @@ class DetailUserViewController: ASDKViewController<ASDisplayNode> {
         avatarImage.onDidLoad {
             $0.layer.cornerRadius = 8
         }
-        avatarImage.backgroundColor = .systemGreen
         return avatarImage
     }()
 
@@ -167,7 +166,7 @@ class DetailUserViewController: ASDKViewController<ASDisplayNode> {
             let navBarHeight = self.navigationController?.navigationBar.frame.height ?? 0.0
             let topPadding = statusBarHeight + navBarHeight
 
-            return ASInsetLayoutSpec(insets: .init(top: topPadding, left: 20, bottom: 8, right: 20), child: finalStackNode)
+            return ASInsetLayoutSpec(insets: .init(top: topPadding + 10, left: 20, bottom: 8, right: 20), child: finalStackNode)
         }
     }
 
